@@ -170,16 +170,15 @@
 				}
 #pragma endregion
 			private: System::Void button1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-
-				double x = Convert::ToDouble(textBox1->Text); //зразок лаби
+				//конвертую текст в дабл
+				double x = Convert::ToDouble(textBox1->Text); 
 				double y = Convert::ToDouble(textBox2->Text);
-				std::string z1;
-				z1 =  msclr::interop::marshal_as<std::string>(textBox3->Text);
-				//float z = strtof(z1,);
+				double z = Convert::ToDouble(textBox3->Text);
+				//вивожу в текстбокс інфу про данні введені користувачем 
 				textBox4->Text += " Лаб. роб. №1. ст.гр. РТ-23б Онищук.В.О.";
 				textBox4->Text += "\r\n\n X = " + Convert::ToString(x);
 				textBox4->Text += "\r\n\n\n"" Y = " + Convert::ToString(y);
-				//textBox4->Text += "\r\n\n\n\n"" Z = " + Convert::ToString(z);
+				textBox4->Text += "\r\n\n\n\n"" Z = " + Convert::ToString(z);
 			
 				
 				const double pinashist = 2.61799;
@@ -188,22 +187,16 @@
 				double sum = 0;
 				float result = 0;
 
-				sum = pow(2, pow(x, y))+ pow(3, x * y);
-			//	numerator = y * (atan(z) - pinashist);
+				//розклав вираз на дії і обчислив все окремо
+				sum = pow(2, pow(y, x))+ pow(3, x * y);
+				numerator = y * (atan(z) - pinashist);
 				denominator = fabs(x) + (1 / (pow(y, 2) + 1));
 
 				result = sum - numerator / denominator;
-				
+				//вивід кінцевого результату в текстбокс
 				textBox4->Text += "\r\n\n\n\n\n"" Result = " + Convert::ToString(result);
 
-					/*
-					exponent = exp(y-z);
-
-
-					float result = tangens+exponent*sqrtSinCos;
-
-					textBox4->Text += "\r\n\n\n\n\n"" Result = " + Convert::ToString(result);
-				*/
+					
 			}
 	};
 }
